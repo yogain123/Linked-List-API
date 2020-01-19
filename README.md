@@ -36,8 +36,8 @@ CREATE API : POST /api/link
 			next: null
 		}]
 	}
-  
-LIST API : GET /api/link/101
+
+GET /api/link/101
 
 	RESPONSE 
 	{
@@ -119,7 +119,9 @@ POP API : GET /api/link/pop/101
 		name: 'Lorem',
 		birthyear: 1912,
 	}
+	
 LIST API : GET /api/link/101
+
 	RESPONSE 
 	{
 		meta: {
