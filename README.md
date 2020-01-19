@@ -4,13 +4,13 @@
 
 Create a web based REST API app, which exposes following API endpoints for using the link list functionalities.
 
-Create: To create a link list.
-Push: add object to end of existing link list.
-Pop: remove last object of the given link list.
-Remove: Delete the provided object form the given link list, if it exisits.
-List: show the complete link list.
-Reverse: show the linklist in reverse order.(the Tail becomes new head, and Head becomes new tail)
-Delete: Destroy the given link list completely.
+- Create: To create a link list.
+- Push: add object to end of existing link list.
+- Pop: remove last object of the given link list.
+- Remove: Delete the provided object form the given link list, if it exisits.
+- List: show the complete link list.
+- Reverse: show the linklist in reverse order.(the Tail becomes new head, and Head becomes new tail)
+- Delete: Destroy the given link list completely.
 Do appropriate error handling. Choose Any language to build the REST API app
 
 The app APIs can be used as follows:
