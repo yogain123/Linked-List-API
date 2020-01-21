@@ -46,9 +46,7 @@ router.get("/link/:id", async function(req, res, next) {
 router.get("/link/pop/:id", async function(req, res, next) {
   //pop api
   let id = req.params.id;
-  let reqData = req.body;
   let data = await findDataById(id);
-  let meta = { id: data._id };
   let ll = JSON.parse(data.object);
   llObject = deleteLast(ll);
   await findDataByIdAndUpdate(id, { object: JSON.stringify(llObject.ll) });
@@ -58,7 +56,7 @@ router.get("/link/pop/:id", async function(req, res, next) {
 router.post("/link/:id", async function(req, res, next) {
   let id = req.params.id;
   let reqData = req.body;
-  let data = findDataById(id);
+  let data = await findDataById(id);
   let meta = { id: data._id };
   let ll = JSON.parse(data.object);
   ll = insertLast(reqData, ll);

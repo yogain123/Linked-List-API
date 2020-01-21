@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 // TODO : YOGENDRA
-let URL = "URL";
+let URL = process.env.URL;
 
 const connectDB = async () => {
   const conn = await mongoose.connect(URL, {
