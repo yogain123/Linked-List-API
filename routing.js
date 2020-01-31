@@ -18,13 +18,25 @@ const {
   findDataByIdAndUpdate
 } = require("./controller");
 
+const Photo = require("./models/photo");
 
-router.post("/post/photo", multipart, (req, res, next) => {
-  let buffer = req.files[0].buffer;
-  fs.writeFileSync("lol.jpg", buffer);
-  res.send("done");
+router.post("/post/photo", multipart, async (req, res, next) => {
+  try {
+    let buffer = req.files[0].buffer;
+    fs.writeFileSync("lol.jpg", buffer);
+    let photo = new Photo({ image: buffer });
+    await photo.save();
+    res.send("done");
+  } catch (error) {
+    console.log(error);
+  }
 });
 
+router.get("/get/photo", multipart, async (req, res, next) => {
+  let data = await Photo.findById("5e346689f1eb3c7bb9b43cbb");
+  fs.writeFileSync("image.jpg", data.image);
+  res.send(data.image);
+});
 
 router.post("/link", async function(req, res, next) {
   let reqData = req.body;
