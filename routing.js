@@ -1,5 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const multer = require("multer");
+const multipart = multer().any();
+const fs = require("fs");
+
 const {
   Node,
   LinkedList,
@@ -13,6 +17,14 @@ const {
   findDataById,
   findDataByIdAndUpdate
 } = require("./controller");
+
+
+router.post("/post/photo", multipart, (req, res, next) => {
+  let buffer = req.files[0].buffer;
+  fs.writeFileSync("lol.jpg", buffer);
+  res.send("done");
+});
+
 
 router.post("/link", async function(req, res, next) {
   let reqData = req.body;
