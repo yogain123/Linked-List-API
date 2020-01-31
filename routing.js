@@ -3,6 +3,8 @@ const router = express.Router();
 const multer = require("multer");
 const multipart = multer().any();
 const fs = require("fs");
+const Customer = require("./models/customer");
+const redis = require("./controller/redis");
 
 const {
   Node,
@@ -36,6 +38,26 @@ router.get("/get/photo", multipart, async (req, res, next) => {
   let data = await Photo.findById("5e346689f1eb3c7bb9b43cbb");
   fs.writeFileSync("image.jpg", data.image);
   res.send(data.image);
+});
+
+router.post("/customer", (req, res, next) => {
+  const data = req.body;
+  Customer(data).save();
+  redis.cacheCustomerDataPost(data);
+  res.send("Done");
+});
+
+router.get("/customer/:name", async (req, res, next) => {
+  const { name } = req.params;
+  let result;
+  result = await redis.cacheCustomerDataGet({ name });
+  if (result) {
+    console.log("From Redis");
+    return res.send(JSON.parse(result));
+  }
+  result = await Customer.findOne({ name });
+  console.log("From DB");
+  res.send(result);
 });
 
 router.post("/link", async function(req, res, next) {
