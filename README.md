@@ -297,7 +297,6 @@ DELETE API : DELETE /api/link/101
 
 ### Adding Redis
 
-brew install redis
-
-redis-server
-redis-cli
+- brew install redis
+- redis-server
+- redis-cli
